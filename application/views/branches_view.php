@@ -20,13 +20,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Ürün Kategorileri</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
+            <h1 class="m-0">Branches</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -50,7 +44,8 @@
                   <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Ürün Kategorisi</th>
+                    <th>Şube adı</th>
+                    <th>Açıklama</th>
                     <th>Durum</th>
                     <th>Oluşturma Tarihi</th>
                     <th>İşlemler</th>
@@ -62,6 +57,7 @@
                     <tr>
                     <td><?php echo $item->id; ?></td>
                     <td><?php echo $item->title; ?></td>
+                    <td><?php echo $item->description; ?></td>
                     <td><?php echo $item->is_active == 0 ? "Pasif" : "Aktif"; ?></td>
                     <td><?php echo $item->created_at; ?></td>
                     <td>SİL - GÜNCELLE</td>
