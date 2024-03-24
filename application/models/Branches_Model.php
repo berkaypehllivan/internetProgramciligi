@@ -6,7 +6,7 @@ class Branches_Model extends CI_Model {
         parent::__construct();
     }
 
-    public function save($data = array()) {
+    public function add($data = array()) {
 
         return $this->db->insert("branches", $data);
 }

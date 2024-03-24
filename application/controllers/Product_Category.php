@@ -1,17 +1,18 @@
 <?php
 
-class Branches extends CI_Controller {
+class Product_Category extends CI_Controller {
 
+	public $viewFolder = "";
 	public function __construct()
 	{
 		parent::__construct();
-		$this->viewFolder = "branches_v";
-		$this->load->model("Branches_Model");
+		$this->viewFolder = "product_category_v";
+		$this->load->model("Product_Category_Model");
 	}
 
 	public function index()
 	{
-		$items = $this->Branches_Model->getAll();
+		$items = $this->Product_Category_Model->getAll();
 		$viewData = new stdClass();
 		$viewData->items = $items;
 		$viewData->subViewFolder = "list";
@@ -30,34 +31,34 @@ class Branches extends CI_Controller {
 	public function save()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("title", "Şubenin adı", "required|trim|is_unique[branches.title]");
-		$this->form_validation->set_rules("location", "Şubenin konumu", "required|trim");
+		$this->form_validation->set_rules("title", "Ürün kategori adı", "required|trim|is_unique[product_categories.title]");
 		$this->form_validation->set_message(
 			array(
 				"required" => "<b>{field}</b> alanı doldurulmalıdır.",
 				"is_unique" => "<b>{field}</b> daha önceden kullanılmış."
 			)
 		);
-
+	
 		$validate = $this->form_validation->run();
-
+	
 		if($validate)
 		{
 			$data = array(
 				"title" => $this->input->post("title"),
-				"is_active" => $this->input->post("status") ? 1 : 0,
-				"location" =>$this->input->post("location")
+				"is_active" => $this->input->post("status") ? 1 : 0
 			);
+	
+			$insert = $this->Product_Category_Model->add($data);
 
-			$insert = $this->Branches_Model->add($data);
-
-			if($insert)
+			if($insert) 
 			{
-				redirect(base_url("Branches"));
-			} else {
-				echo "Şube Ekleme İşlemi Sırasında Bir Hata Oluştu.";
+				redirect(base_url("Product_Category"));
+			} else
+			{
+				echo "Kayıt Ekleme Sırasında Bir Hata Oluştu.";
 			}
-		} else {
+		} else
+		{
 			$viewData = new stdClass();
 			$viewData->viewFolder = $this->viewFolder;
 			$viewData->subViewFolder = "add";
@@ -65,6 +66,7 @@ class Branches extends CI_Controller {
 			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 		}
 	}
+	
 }
 
 

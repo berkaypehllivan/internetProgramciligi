@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li>
-            <a href="<?php echo base_url("welcome")?>" class="nav-link">
+            <a href="<?php echo base_url("Product_Category")?>" class="nav-link">
             <i class="fas fa-long-arrow-alt-right"></i>
               <p>Ürünler</p>
             </a>
