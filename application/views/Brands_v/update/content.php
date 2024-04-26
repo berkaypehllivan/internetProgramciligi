@@ -15,16 +15,18 @@
                 <!-- Horizontal Form -->
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Yeni Şube Ekleme İşlemi</h3>
+                        <h3 class="card-title">Marka Güncelleme İşlemi</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" method="POST" action="<?php echo base_url("Branches/save") ?>">
+                    <form class="form-horizontal" method="POST" action="<?php echo base_url("Brands/update/$item->id") ?>">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Şubenin Adı:</label>
+                                <label for="title" class="col-sm-2 col-form-label">Markanın Adı:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="title" class="form-control" id="title" placeholder="Şubenin Adını Giriniz.">
+
+                                    <input type="text" name="title" class="form-control" id="title" value="<?php echo isset($formError) ? set_value("title") : $item->title; ?>" placeholder="Markanın Adını Giriniz.">
+
                                     <?php if (isset($formError)) { ?>
                                         <small><?php echo form_error("title"); ?></small>
                                     <?php } ?>
@@ -32,17 +34,31 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="title" class="col-sm-2 col-form-label">Şubenin Konumu:</label>
+                                <label for="title" class="col-sm-2 col-form-label">Markanın Değeri:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="location" class="form-control" id="location" placeholder="Şubenin Konumunu Giriniz.">
+
+                                    <input type="number" name="rank" class="form-control" id="rank" value="<?php echo isset($formError) ? set_value("rank") : $item->rank; ?>" placeholder="Markanın Değerini Giriniz.">
+
                                     <?php if (isset($formError)) { ?>
-                                        <small><?php echo form_error("location"); ?></small>
+                                        <small><?php echo form_error("rank"); ?></small>
                                     <?php } ?>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">Şubenin Durumu:</label>
+                                <label for="price" class="col-sm-2 col-form-label">Markanın Fiyatı:</label>
+                                <div class="col-sm-10">
+
+                                    <input type="number" name="price" class="form-control" id="price" value="<?php echo isset($formError) ? set_value("price") : $item->price; ?>" placeholder="Markanın Değerini Giriniz.">
+
+                                    <?php if (isset($formError)) { ?>
+                                        <small><?php echo form_error("price"); ?></small>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Markanın Durumu:</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
                                         <input type="radio" id="status_active" name="status" value="1" class="form-check-input">
@@ -54,11 +70,11 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-info">Kaydet</button>
-                            <a href="<?php echo base_url("Branches") ?>" class="btn btn-default float-right">Vazgeç</a>
+                            <a href="<?php echo base_url("Brands") ?>" class="btn btn-default float-right">Vazgeç</a>
                         </div>
                         <!-- /.card-footer -->
                     </form>

@@ -1,18 +1,18 @@
 <?php
 
-class Branches extends CI_Controller {
+class Brands extends CI_Controller {
 
 	public $viewFolder = "";
 	public function __construct()
 	{
 		parent::__construct();
-		$this->viewFolder = "Branches_v";
-		$this->load->model("Branches_Model");
+		$this->viewFolder = "Brands_v";
+		$this->load->model("Brands_Model");
 	}
 
 	public function index()
 	{
-		$items = $this->Branches_Model->getAll();
+		$items = $this->Brands_Model->getAll();
 		$viewData = new stdClass();
 		$viewData->items = $items;
 		$viewData->subViewFolder = "list";
@@ -30,7 +30,7 @@ class Branches extends CI_Controller {
 
 	public function update_form($id)
 	{
-		$item = $this->Branches_Model->get(
+		$item = $this->Brands_Model->get(
 			array(
 				"id" => $id
 			)
@@ -46,11 +46,10 @@ class Branches extends CI_Controller {
 	public function update($id)
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("title", "Ürün kategori adı", "required|trim|is_unique[product_categories.title]");
+		$this->form_validation->set_rules("title", "Marka adı", "required|trim");
 		$this->form_validation->set_message(
 			array(
 				"required" => "<b>{field}</b> alanı doldurulmalıdır.",
-				"is_unique" => "<b>{field}</b> daha önceden kullanılmış."
 			)
 		);
 	
@@ -63,16 +62,16 @@ class Branches extends CI_Controller {
 				"is_active" => $this->input->post("status") ? 1 : 0
 			);
 
-			$update = $this->Branches_Model->update(
+			$update = $this->Brands_Model->update(
 			array(
 				"id" => $id), $data
 			);
 			if($update)
 			{
-				redirect(base_url("Branches"));
+				redirect(base_url("Brands"));
 			} else
 			{
-				$item = $this->Branches_Model->get(
+				$item = $this->Brands_Model->get(
 					array(
 						"id" => $id
 					)
@@ -90,11 +89,13 @@ class Branches extends CI_Controller {
 	public function save()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("title", "Şubenin adı", "required|trim");
-		$this->form_validation->set_rules("title", "Şubenin konumu", "required|trim");
+		$this->form_validation->set_rules("title", "Marka Adı", "required|trim|is_unique[brands.title]");
+		$this->form_validation->set_rules("rank", "Marka Değeri", "required|trim");
+		$this->form_validation->set_rules("price", "Marka Fiyatı", "required|trim");
 		$this->form_validation->set_message(
 			array(
 				"required" => "<b>{field}</b> alanı doldurulmalıdır.",
+				"is_unique" => "<b>{field}</b> daha önceden kullanılmış."
 			)
 		);
 	
@@ -104,15 +105,16 @@ class Branches extends CI_Controller {
 		{
 			$data = array(
 				"title" => $this->input->post("title"),
-				"location" => $this->input->post("location"),
+				"rank" => $this->input->post("rank"),
+				"price" => $this->input->post("price"),
 				"is_active" => $this->input->post("status") ? 1 : 0
 			);
 	
-			$insert = $this->Branches_Model->add($data);
+			$insert = $this->Brands_Model->add($data);
 
 			if($insert) 
 			{
-				redirect(base_url("Branches"));
+				redirect(base_url("Brands"));
 			} else
 			{
 				echo "Kayıt Ekleme Sırasında Bir Hata Oluştu.";
@@ -132,9 +134,9 @@ class Branches extends CI_Controller {
 		$data = array(
 			"id" => $id);
 		
-		$this->Branches_Model->delete($data);
+		$this->Brands_Model->delete($data);
 
-		redirect(base_url("Branches"));
+		redirect(base_url("Brands"));
 	}
 	
 }

@@ -18,12 +18,12 @@
                   <div class="row">
 
                     <div class="col-md-6">
-                      <h3 class="card-title">Şubeler Listesi</h3>
+                      <h3 class="card-title">Markaların Listesi</h3>
                     </div>
 
                     <div class="col-md-6 text-right">
-                      <a href="<?php echo base_url("Branches/new_form") ?>" class="btn btn-success btn-xs mb-2 ">
-                      <i class="fas fa-plus"></i> Yeni Şube Ekle</a>
+                      <a href="<?php echo base_url("Brands/new_form") ?>" class="btn btn-success btn-xs mb-2 ">
+                      <i class="fas fa-plus"></i> Yeni Marka Ekle</a>
                     </div>
 
                   </div>
@@ -35,8 +35,9 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Şube Konumu</th>
-                        <th>Lokasyon</th>
+                        <th>Marka Adı</th>
+                        <th>Marka Değeri</th>
+                        <th>Marka Fiyatı</th>
                         <th>Durum</th>
                         <th>Oluşturma Tarihi</th>
                         <th>İşlemler</th>
@@ -48,13 +49,14 @@
                         <tr>
                           <td><?php echo $item->id; ?></td>
                           <td><?php echo $item->title; ?></td>
-                          <td><?php echo $item->location; ?></td>
+                          <td><?php echo $item->rank; ?></td>
+                          <td><?php echo $item->price; ?></td>
                           <td><?php echo $item->is_active == 0 ? "Pasif" : "Aktif"; ?></td>
                           <td><?php
                           echo dateTimeFormat($item->created_at);?></td>
                           <td>
-                          <a href="<?php echo base_url("Branches/delete/$item->id")?>" class="btn btn-danger mr-2">Sil</a>
-                          <a href="<?php echo base_url("Branches/update_form/$item->id")?>" class="btn btn-primary">Güncelle</a>
+                          <a href="<?php echo base_url("Brands/delete/$item->id")?>" class="btn btn-danger mr-2">Sil</a>
+                          <a href="<?php echo base_url("Brands/update_form/$item->id")?>" class="btn btn-primary">Güncelle</a>
                           </td>
                         </tr>
                       <?php } ?>
