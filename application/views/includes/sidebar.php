@@ -31,29 +31,34 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li>
-            <a href="<?php echo base_url("Product_Category")?>" class="nav-link">
-            <i class="fas fa-long-arrow-alt-right"></i>
-              <p>Ürünler</p>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url("branches")?>" class="nav-link">
-            <i class="fas fa-long-arrow-alt-right"></i>
-              <p>Şubeler</p>
-            </a>
-          </li>
-          <li>
-            <a href="<?php echo base_url("brands")?>" class="nav-link">
-            <i class="fas fa-long-arrow-alt-right"></i>
-              <p>Markalar</p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+    <?php
+    // Current URI path
+    $current_uri = uri_string(); // URI'yı al
+    
+    // Bağlantıları ve karşılık gelen sayfaları tanımlayın
+    $menu_items = [
+      'Product_Category' => 'Ürünler',
+      'branches' => 'Şubeler',
+      'brands' => 'Markalar',
+    ];
+    
+    foreach ($menu_items as $uri => $label) {
+        // Eğer mevcut URI bu bağlantıyla eşleşiyorsa, 'active' sınıfını ekle
+        $active_class = ($current_uri == $uri) ? ' active' : '';
+        
+        echo '<li>';
+        echo '<a href="' . base_url($uri) . '" class="nav-link' . $active_class . '">';
+        echo '<i class="fas fa-long-arrow-alt-right"></i>';
+        echo '<p>' . $label . '</p>';
+        echo '</a>';
+        echo '</li>';
+    }
+    ?>
+  </ul>
+</nav>
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
