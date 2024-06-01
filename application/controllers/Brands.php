@@ -59,6 +59,8 @@ class Brands extends CI_Controller {
 		{
 			$data = array(
 				"title" => $this->input->post("title"),
+				"rank" => $this->input->post("rank"),
+				"price" => $this->input->post("price"),
 				"is_active" => $this->input->post("status") ? 1 : 0
 			);
 

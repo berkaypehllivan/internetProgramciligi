@@ -42,6 +42,8 @@
       'Product_Category' => 'Ürünler',
       'branches' => 'Şubeler',
       'brands' => 'Markalar',
+      'users' => 'Kullanıcılar',
+      'Login' => 'Çıkış Yap',
     ];
     
     foreach ($menu_items as $uri => $label) {
