@@ -77,13 +77,9 @@ class Users extends CI_Controller {
 				"email"     => $this->input->post("email"),
 				"name"      => $this->input->post("name"),
 				"surname"   => $this->input->post("surname"),
+				"password"   => md5($this->input->post("password")),
 				"is_active" => 1
 			);
-
-			if (!empty($this->input->post("password")))
-			{
-            	$data["password"] = md5($this->input->post("password"));
-        	}
 
 			$update = $this->Users_Model->update(
 			array(

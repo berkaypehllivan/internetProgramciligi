@@ -21,6 +21,13 @@
       <a href="#" class="h1"><b>Admin</b>Paneli</a>
     </div>
     <div class="card-body">
+
+    <?php if ($this->session->flashdata('error')): ?>
+  <div class="alert alert-danger">
+    <?php echo $this->session->flashdata('error'); ?>
+  </div>
+<?php endif; ?>
+
       <p class="login-box-msg">Giriş Yap ve Düzene El Koy!</p>
 
       <form action="<?php echo base_url("Login/authenticate")?>" method="POST">
